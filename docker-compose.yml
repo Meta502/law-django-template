@@ -7,6 +7,10 @@ services:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+  
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+
   web:
     build: .
     command: >
@@ -20,6 +24,7 @@ services:
       - POSTGRES_NAME=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+      - RABBITMQ_HOST=rabbitmq
     depends_on:
       - db
 
